@@ -8,7 +8,7 @@ body {
 }
 
 a {
-  columns: inherit;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -17,7 +17,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 32px;
   border-bottom: 1px solid black;
 }
 
@@ -32,4 +32,44 @@ header .right ul {
   list-style: none;
   display: flex;
   align-items: center;
+}
+
+header .right ul li .active {
+  text-decoration: underline;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+main .left {
+  display: flex;
+  flex-direction: column;
+}
+
+main .left .title {
+  font-size: 48px;
+}
+
+main .left p {
+  font-size: 20px;
+}
+
+main .left .special-link {
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: 2px solid black;
+  transition: background 0.3s, color 0.3s;
+  width: max-content;
+}
+
+main .left .special-link:hover {
+  color: black;
+  background-color: white;
 }
