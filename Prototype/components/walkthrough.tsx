@@ -193,7 +193,7 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
                 </p>
                 <div className="flex items-center justify-center p-4">
                   <img
-                    src="/placeholder.svg?height=150&width=400"
+                    src="https://images.deepai.org/converted-papers/1712.06530/x1.png"
                     alt="Connecting Layers"
                     className="rounded-md border"
                   />
