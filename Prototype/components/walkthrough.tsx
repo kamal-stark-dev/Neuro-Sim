@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,64 +8,87 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { CircleIcon, NetworkIcon, BoxIcon, DatabaseIcon, Play, Settings, ChevronLeft, ChevronRight } from "lucide-react"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  CircleIcon,
+  NetworkIcon,
+  BoxIcon,
+  DatabaseIcon,
+  Play,
+  Settings,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 interface WalkthroughProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
 export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
-  const [step, setStep] = useState(1)
-  const [showAgain, setShowAgain] = useState(true)
+  const [step, setStep] = useState(1);
+  const [showAgain, setShowAgain] = useState(true);
 
-  const totalSteps = 6
+  const totalSteps = 6;
 
   const handleNext = () => {
     if (step < totalSteps) {
-      setStep(step + 1)
+      setStep(step + 1);
     } else {
       // Save preference if user doesn't want to see again
       if (!showAgain) {
-        localStorage.setItem("hideWalkthrough", "true")
+        localStorage.setItem("hideWalkthrough", "true");
       }
-      onOpenChange(false)
+      onOpenChange(false);
     }
-  }
+  };
 
   const handlePrevious = () => {
     if (step > 1) {
-      setStep(step - 1)
+      setStep(step - 1);
     }
-  }
+  };
 
   const handleSkip = () => {
     // Save preference if user doesn't want to see again
     if (!showAgain) {
-      localStorage.setItem("hideWalkthrough", "true")
+      localStorage.setItem("hideWalkthrough", "true");
     }
-    onOpenChange(false)
-  }
+    onOpenChange(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Welcome to Neural Network Visualizer</DialogTitle>
-          <DialogDescription>Let's walk through the key features to help you get started.</DialogDescription>
+          <DialogDescription>
+            Let's walk through the key features to help you get started.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="mt-4 relative">
           <div className="absolute top-0 left-0 w-full flex justify-center">
             <div className="flex space-x-1">
               {Array.from({ length: totalSteps }).map((_, i) => (
-                <div key={i} className={`h-1.5 w-6 rounded-full ${i + 1 === step ? "bg-primary" : "bg-muted"}`} />
+                <div
+                  key={i}
+                  className={`h-1.5 w-6 rounded-full ${
+                    i + 1 === step ? "bg-primary" : "bg-muted"
+                  }`}
+                />
               ))}
             </div>
           </div>
@@ -75,16 +98,20 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
               <div className="space-y-4">
                 <div className="flex items-center justify-center p-4">
                   <img
-                    src="/placeholder.svg?height=200&width=400"
+                    src="https://miro.medium.com/max/3744/1*CnNorCR4Zdq7pVchdsRGyw.png"
                     alt="Neural Network Visualizer Overview"
                     className="rounded-md border"
                   />
                 </div>
-                <h3 className="text-lg font-medium">Build Neural Networks Visually</h3>
+                <h3 className="text-lg font-medium">
+                  Build Neural Networks Visually
+                </h3>
                 <p className="text-sm text-muted-foreground">
-                  The Neural Network Visualizer allows you to create, visualize, and train neural networks using an
-                  intuitive drag-and-drop interface. You can experiment with different architectures, activation
-                  functions, and see how data flows through your network in real-time.
+                  The Neural Network Visualizer allows you to create, visualize,
+                  and train neural networks using an intuitive drag-and-drop
+                  interface. You can experiment with different architectures,
+                  activation functions, and see how data flows through your
+                  network in real-time.
                 </p>
               </div>
             )}
@@ -93,7 +120,8 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Adding Layers</h3>
                 <p className="text-sm text-muted-foreground">
-                  Drag and drop different layer types from the sidebar onto the canvas to build your network.
+                  Drag and drop different layer types from the sidebar onto the
+                  canvas to build your network.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <Card>
@@ -104,7 +132,9 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
                       </div>
                     </CardHeader>
                     <CardContent className="p-3 pt-0">
-                      <CardDescription className="text-xs">The entry point for data into your network</CardDescription>
+                      <CardDescription className="text-xs">
+                        The entry point for data into your network
+                      </CardDescription>
                     </CardContent>
                   </Card>
 
@@ -130,7 +160,9 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
                       </div>
                     </CardHeader>
                     <CardContent className="p-3 pt-0">
-                      <CardDescription className="text-xs">The final layer that produces predictions</CardDescription>
+                      <CardDescription className="text-xs">
+                        The final layer that produces predictions
+                      </CardDescription>
                     </CardContent>
                   </Card>
 
@@ -142,7 +174,9 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
                       </div>
                     </CardHeader>
                     <CardContent className="p-3 pt-0">
-                      <CardDescription className="text-xs">Import CSV data for training your network</CardDescription>
+                      <CardDescription className="text-xs">
+                        Import CSV data for training your network
+                      </CardDescription>
                     </CardContent>
                   </Card>
                 </div>
@@ -153,8 +187,9 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Connecting Layers</h3>
                 <p className="text-sm text-muted-foreground">
-                  Connect layers by dragging from one node's handle to another. This creates the pathways for data to
-                  flow through your network.
+                  Connect layers by dragging from one node's handle to another.
+                  This creates the pathways for data to flow through your
+                  network.
                 </p>
                 <div className="flex items-center justify-center p-4">
                   <img
@@ -166,15 +201,22 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
                 <div className="text-sm space-y-2">
                   <div className="flex items-center">
                     <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                    <span>Drag from output handles (right side) to input handles (left side)</span>
+                    <span>
+                      Drag from output handles (right side) to input handles
+                      (left side)
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
-                    <span>Connections automatically create weights between neurons</span>
+                    <span>
+                      Connections automatically create weights between neurons
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
-                    <span>Animated connections show data flow during execution</span>
+                    <span>
+                      Animated connections show data flow during execution
+                    </span>
                   </div>
                 </div>
               </div>
@@ -184,7 +226,8 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Customizing Properties</h3>
                 <p className="text-sm text-muted-foreground">
-                  Click on any node to edit its properties in the properties panel.
+                  Click on any node to edit its properties in the properties
+                  panel.
                 </p>
                 <Tabs defaultValue="basic" className="w-full">
                   <TabsList className="grid w-full grid-cols-3">
@@ -197,7 +240,9 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-sm">Label:</span>
-                        <span className="text-sm font-medium">Hidden Layer</span>
+                        <span className="text-sm font-medium">
+                          Hidden Layer
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-sm">Units:</span>
@@ -229,7 +274,8 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Running Your Network</h3>
                 <p className="text-sm text-muted-foreground">
-                  Use the controls to run your network and see how data flows through it.
+                  Use the controls to run your network and see how data flows
+                  through it.
                 </p>
                 <div className="flex justify-center gap-2 my-4">
                   <Button size="sm">
@@ -273,12 +319,16 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
             {step === 6 && (
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Training Your Network</h3>
-                <p className="text-sm text-muted-foreground">Use the training options to train your network on data.</p>
+                <p className="text-sm text-muted-foreground">
+                  Use the training options to train your network on data.
+                </p>
                 <Card>
                   <CardHeader className="p-3">
                     <div className="flex items-center">
                       <Settings className="h-4 w-4 mr-2" />
-                      <CardTitle className="text-sm">Training Options</CardTitle>
+                      <CardTitle className="text-sm">
+                        Training Options
+                      </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="p-3 pt-0">
@@ -306,7 +356,8 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
                   </CardFooter>
                 </Card>
                 <div className="text-sm text-muted-foreground">
-                  You can also import CSV data using the Data Source node to train on your own datasets.
+                  You can also import CSV data using the Data Source node to
+                  train on your own datasets.
                 </div>
               </div>
             )}
@@ -320,7 +371,10 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
               checked={showAgain}
               onCheckedChange={(checked) => setShowAgain(checked as boolean)}
             />
-            <Label htmlFor="show-again" className="text-sm text-muted-foreground">
+            <Label
+              htmlFor="show-again"
+              className="text-sm text-muted-foreground"
+            >
               Show this walkthrough next time
             </Label>
           </div>
@@ -348,6 +402,5 @@ export function Walkthrough({ open, onOpenChange }: WalkthroughProps) {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-
